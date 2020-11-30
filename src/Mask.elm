@@ -13,7 +13,7 @@ module Mask exposing
 
 # Formating numbers
 
-@docs floatDecimal, intDecimal, defaultDecimalOptions
+@docs floatDecimal, intDecimal, defaultDecimalOptions, DecimalOptions
 
 -}
 
@@ -27,7 +27,8 @@ type alias DecimalOptions =
     }
 
 
-{-| Default options to format numbers
+{-| Default options to format numbers. Extend this if
+you want to customize the way numbers are formatted.
 -}
 defaultDecimalOptions : DecimalOptions
 defaultDecimalOptions =
