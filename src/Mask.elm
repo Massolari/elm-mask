@@ -1,6 +1,6 @@
 module Mask exposing
     ( string, number
-    , floatDecimal, intDecimal, defaultDecimalOptions
+    , floatDecimal, intDecimal, DecimalOptions, defaultDecimalOptions
     )
 
 {-| A mask is a formatting pattern that you can apply to a value. This module has some functions to help you create and apply masks.
