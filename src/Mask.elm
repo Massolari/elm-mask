@@ -1,6 +1,6 @@
 module Mask exposing
     ( string, number
-    , floatDecimal, intDecimal, DecimalOptions, defaultDecimalOptions
+    , DecimalOptions, defaultDecimalOptions, floatDecimal, intDecimal
     )
 
 {-| A mask is a formatting pattern that you can apply to a value. This module has some functions to help you create and apply masks.
@@ -13,12 +13,12 @@ module Mask exposing
 
 # Formating numbers
 
-@docs floatDecimal, intDecimal, defaultDecimalOptions, DecimalOptions
+@docs DecimalOptions, defaultDecimalOptions, floatDecimal, intDecimal
 
 -}
 
 
-{-| Options used to format numbers. `decimal` and `thousand` are the characters that separate each section of the number
+{-| Options used to format numbers. `decimal` and `thousand` are the characters that separate each section of the number and `precision` is the number of decimal places
 -}
 type alias DecimalOptions =
     { decimal : String
@@ -27,8 +27,14 @@ type alias DecimalOptions =
     }
 
 
-{-| Default options to format numbers. Extend this if
-you want to customize the way numbers are formatted.
+{-| Default options to format numbers. Extend this if you want to customize the way numbers are formatted.
+
+    defaultDecimalOptions =
+        { decimal = "."
+        , thousand = ","
+        , precision = 2
+        }
+
 -}
 defaultDecimalOptions : DecimalOptions
 defaultDecimalOptions =

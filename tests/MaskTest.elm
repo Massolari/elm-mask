@@ -40,6 +40,10 @@ suite =
                         }
                         1000000.0
                         |> Expect.equal "10.000,0000"
+            , test "Mask 1 million with 5 decimals and default options" <|
+                \_ ->
+                    Mask.floatDecimal defaultDecimalOptions 1000000.12345
+                        |> Expect.equal "1,000,000.12"
             ]
         , describe "Mask.intDecimal"
             [ test "Mask 1 million with default options" <|
@@ -88,6 +92,10 @@ suite =
                 \_ ->
                     Mask.string "#-##-#" "q1w"
                         |> Expect.equal "q-1w"
+            , test "Mask string with value bigger than pattern" <|
+                \_ ->
+                    Mask.string "#-##-#" "q1w2e3r4"
+                        |> Expect.equal "q-1w-2"
             , test "Mask string with pattern with suffix" <|
                 \_ ->
                     Mask.string "A##B" "ab"
