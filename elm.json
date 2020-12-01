@@ -3,7 +3,7 @@
     "name": "Massolari/elm-mask",
     "summary": "A simple way to apply a mask on your string",
     "license": "MIT",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "exposed-modules": [
         "Mask"
     ],
@@ -19,8 +19,5 @@
     },
     "test-dependencies": {
         "elm-explorations/test": "1.2.2 <= v < 2.0.0"
-    },
-    "source-directories": [
-        "src"
-    ]
+    }
 }
