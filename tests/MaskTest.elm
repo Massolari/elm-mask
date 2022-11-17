@@ -21,15 +21,15 @@ suite =
             , test "Mask 1 million with 3 precision" <|
                 \_ ->
                     Mask.floatDecimal { defaultDecimalOptions | precision = 3 } 1000000.0
-                        |> Expect.equal "100,000.000"
+                        |> Expect.equal "1,000,000.000"
             , test "Mask 1 million with 0 precision" <|
                 \_ ->
                     Mask.floatDecimal { defaultDecimalOptions | precision = 0 } 1000000.0
-                        |> Expect.equal "100,000,000"
+                        |> Expect.equal "1,000,000"
             , test "Mask 1 million with -1 precision" <|
                 \_ ->
                     Mask.floatDecimal { defaultDecimalOptions | precision = -1 } 1000000.0
-                        |> Expect.equal "100,000,000"
+                        |> Expect.equal "1,000,000"
             , test "Mask 1 million with 4 precision and brazilian notation" <|
                 \_ ->
                     Mask.floatDecimal
@@ -39,7 +39,7 @@ suite =
                             , thousand = "."
                         }
                         1000000.0
-                        |> Expect.equal "10.000,0000"
+                        |> Expect.equal "1.000.000,0000"
             , test "Mask 1 million with 5 decimals and default options" <|
                 \_ ->
                     Mask.floatDecimal defaultDecimalOptions 1000000.12345
@@ -48,34 +48,34 @@ suite =
         , describe "Mask.intDecimal"
             [ test "Mask 1 million with default options" <|
                 \_ ->
-                    Mask.floatDecimal defaultDecimalOptions 1000000
-                        |> Expect.equal "1,000,000.00"
+                    Mask.intDecimal defaultDecimalOptions 1000000
+                        |> Expect.equal "10,000.00"
             , test "Mask negative 1 million with default options" <|
                 \_ ->
-                    Mask.floatDecimal defaultDecimalOptions -1000000
-                        |> Expect.equal "-1,000,000.00"
+                    Mask.intDecimal defaultDecimalOptions -1000000
+                        |> Expect.equal "-10,000.00"
             , test "Mask 1 million with 3 precision" <|
                 \_ ->
-                    Mask.floatDecimal { defaultDecimalOptions | precision = 3 } 1000000
-                        |> Expect.equal "100,000.000"
+                    Mask.intDecimal { defaultDecimalOptions | precision = 3 } 1000000
+                        |> Expect.equal "1,000.000"
             , test "Mask 1 million with 0 precision" <|
                 \_ ->
-                    Mask.floatDecimal { defaultDecimalOptions | precision = 0 } 1000000
-                        |> Expect.equal "100,000,000"
+                    Mask.intDecimal { defaultDecimalOptions | precision = 0 } 1000000
+                        |> Expect.equal "1,000,000"
             , test "Mask 1 million with -1 precision" <|
                 \_ ->
-                    Mask.floatDecimal { defaultDecimalOptions | precision = -1 } 1000000
-                        |> Expect.equal "100,000,000"
+                    Mask.intDecimal { defaultDecimalOptions | precision = -1 } 1000000
+                        |> Expect.equal "1,000,000"
             , test "Mask 1 million with 4 precision and brazilian notation" <|
                 \_ ->
-                    Mask.floatDecimal
+                    Mask.intDecimal
                         { defaultDecimalOptions
                             | precision = 4
                             , decimal = ","
                             , thousand = "."
                         }
                         1000000
-                        |> Expect.equal "10.000,0000"
+                        |> Expect.equal "100,0000"
             ]
         , describe "Mask.number"
             [ test "Mask phone filtering numbers" <|

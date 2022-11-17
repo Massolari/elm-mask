@@ -48,17 +48,23 @@ defaultDecimalOptions =
 
     floatDecimal defaultDecimalOptions 10500.5 == "10.500.50"
 
-    floatDecimal { defaultDecimalOptions | precision = 3, decimal = ",", thousand = "." } 10500.5 == "1.050,050"
+    floatDecimal { defaultDecimalOptions | precision = 3, decimal = ",", thousand = "." } 10500.5 == "10.500,500"
 
 -}
 floatDecimal : DecimalOptions -> Float -> String
 floatDecimal options dec =
     let
+        nonNegativePrecision =
+            if options.precision < 0 then
+                0
+
+            else
+                options.precision
+
         intValue =
             dec
-                |> (*) (10 ^ (toFloat options.precision + 2.0))
-                |> ceiling
-                |> (\n -> n // (10 ^ options.precision))
+                |> (*) (10 ^ toFloat nonNegativePrecision)
+                |> round
     in
     intDecimal options intValue
 
